@@ -1,2 +1,7 @@
+
 image:
   file: .gitpod.dockerfile
+vscode:
+  extensions:
+    - ms-toolsai.jupyter
+    - ms-python.python
