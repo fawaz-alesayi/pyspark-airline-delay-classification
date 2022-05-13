@@ -14606,10 +14606,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Downloading flights.csv.zip to /workspace/pyspark-airline-delay-classification
- 97%|██████████████████████████████████████▊ | 185M/191M [00:04&lt;00:00, 39.1MB/s]
-100%|████████████████████████████████████████| 191M/191M [00:04&lt;00:00, 43.4MB/s]
+ 94%|█████████████████████████████████████▋  | 180M/191M [00:03&lt;00:00, 36.1MB/s]
+100%|████████████████████████████████████████| 191M/191M [00:03&lt;00:00, 50.4MB/s]
 Archive:  flights.csv.zip
-  inflating: flights.csv             
+replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 </pre>
 </div>
 </div>
@@ -14618,7 +14618,7 @@ Archive:  flights.csv.zip
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14634,41 +14634,6 @@ Archive:  flights.csv.zip
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Picked up JAVA_TOOL_OPTIONS:  -Xmx3435m
-Picked up JAVA_TOOL_OPTIONS:  -Xmx3435m
-22/05/10 21:56:29 WARN Utils: Your hostname, fawazalesay-pysparkairl-xfix06g37ub resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface ceth0)
-22/05/10 21:56:29 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/jars/spark-unsafe_2.12-3.2.1.jar) to constructor java.nio.DirectByteBuffer(long,int)
-WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
-WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release
-Using Spark&#39;s default log4j profile: org/apache/spark/log4j-defaults.properties
-Setting default log level to &#34;WARN&#34;.
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-22/05/10 21:56:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14720,7 +14685,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 1:=================================================&gt;         (5 + 1) / 6]</pre>
+<pre>[Stage 1:=========&gt;                                                 (1 + 5) / 6]</pre>
 </div>
 </div>
 
@@ -14802,53 +14767,50 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Our Schema</span>
-<span class="c1"># |-- YEAR: integer (nullable = true) - The year of the flight</span>
-<span class="c1"># |-- MONTH: integer (nullable = true) - The month of the flight</span>
-<span class="c1"># |-- DAY: integer (nullable = true) - The day of the flight</span>
-<span class="c1"># |-- DAY_OF_WEEK: integer (nullable = true) - The day of the week of the flight</span>
-<span class="c1"># |-- AIRLINE: string (nullable = true) - The airline code of the flight</span>
-<span class="c1"># |-- FLIGHT_NUMBER: integer (nullable = true) - The flight number of the flight</span>
-<span class="c1"># |-- TAIL_NUMBER: string (nullable = true) - the tail number of the aircraft</span>
-<span class="c1"># |-- ORIGIN_AIRPORT: string (nullable = true) - The origin airport code of the flight</span>
-<span class="c1"># |-- DESTINATION_AIRPORT: string (nullable = true) - The destination airport code of the flight</span>
-<span class="c1"># |-- SCHEDULED_DEPARTURE: integer (nullable = true) - The scheduled departure time of the flight</span>
-<span class="c1"># |-- DEPARTURE_TIME: integer (nullable = true) - The actual departure time of the flight</span>
-<span class="c1"># |-- DEPARTURE_DELAY: integer (nullable = true) - The departure delay of the flight</span>
-<span class="c1"># |-- TAXI_OUT: integer (nullable = true) - The taxi out time of the flight</span>
-<span class="c1"># |-- WHEELS_OFF: integer (nullable = true) - The wheels off time of the flight</span>
-<span class="c1"># |-- SCHEDULED_TIME: integer (nullable = true) - The scheduled time of the flight</span>
-<span class="c1"># |-- ELAPSED_TIME: integer (nullable = true) - The elapsed time of the flight</span>
-<span class="c1"># |-- AIR_TIME: integer (nullable = true) - The air time of the flight</span>
-<span class="c1"># |-- DISTANCE: integer (nullable = true) - The distance between the origin and destination airports</span>
-<span class="c1"># |-- WHEELS_ON: integer (nullable = true) - The wheels on time of the flight</span>
-<span class="c1"># |-- TAXI_IN: integer (nullable = true) - The taxi in time of the flight</span>
-<span class="c1"># |-- SCHEDULED_ARRIVAL: integer (nullable = true) - The scheduled arrival time of the flight</span>
-<span class="c1"># |-- ARRIVAL_TIME: integer (nullable = true) - The actual arrival time of the flight</span>
-<span class="c1"># |-- ARRIVAL_DELAY: integer (nullable = true) - The arrival delay of the flight</span>
-<span class="c1"># |-- DIVERTED: integer (nullable = true) - Whether the flight was diverted or not</span>
-<span class="c1"># |-- CANCELLED: integer (nullable = true) - Whether the flight was cancelled or not</span>
-<span class="c1"># |-- CANCELLATION_REASON: string (nullable = true) - The reason the flight was cancelled</span>
-<span class="c1"># |-- AIR_SYSTEM_DELAY: integer (nullable = true) - The air system delay of the flight</span>
-<span class="c1"># |-- SECURITY_DELAY: integer (nullable = true) - The security delay of the flight</span>
-<span class="c1"># |-- AIRLINE_DELAY: integer (nullable = true) - The airline delay of the flight</span>
-<span class="c1"># |-- LATE_AIRCRAFT_DELAY: integer (nullable = true) - The late aircraft delay of the flight </span>
-<span class="c1"># |-- WEATHER_DELAY: integer (nullable = true) - The weather delay of the flight</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Our-Schema">Our Schema<a class="anchor-link" href="#Our-Schema">&#182;</a></h1><ul>
+<li>|-- YEAR: integer (nullable = true) - The year of the flight</li>
+<li>|-- MONTH: integer (nullable = true) - The month of the flight</li>
+<li>|-- DAY: integer (nullable = true) - The day of the flight</li>
+<li>|-- DAY_OF_WEEK: integer (nullable = true) - The day of the week of the flight</li>
+<li>|-- AIRLINE: string (nullable = true) - The airline code of the flight</li>
+<li>|-- FLIGHT_NUMBER: integer (nullable = true) - The flight number of the flight</li>
+<li>|-- TAIL_NUMBER: string (nullable = true) - the tail number of the aircraft</li>
+<li>|-- ORIGIN_AIRPORT: string (nullable = true) - The origin airport code of the flight</li>
+<li>|-- DESTINATION_AIRPORT: string (nullable = true) - The destination airport code of the flight</li>
+<li>|-- SCHEDULED_DEPARTURE: integer (nullable = true) - The scheduled departure time of the flight</li>
+<li>|-- DEPARTURE_TIME: integer (nullable = true) - The actual departure time of the flight</li>
+<li>|-- DEPARTURE_DELAY: integer (nullable = true) - The departure delay of the flight</li>
+<li>|-- TAXI_OUT: integer (nullable = true) - The taxi out time of the flight</li>
+<li>|-- WHEELS_OFF: integer (nullable = true) - The wheels off time of the flight</li>
+<li>|-- SCHEDULED_TIME: integer (nullable = true) - The scheduled time of the flight</li>
+<li>|-- ELAPSED_TIME: integer (nullable = true) - The elapsed time of the flight</li>
+<li>|-- AIR_TIME: integer (nullable = true) - The air time of the flight</li>
+<li>|-- DISTANCE: integer (nullable = true) - The distance between the origin and destination airports</li>
+<li>|-- WHEELS_ON: integer (nullable = true) - The wheels on time of the flight</li>
+<li>|-- TAXI_IN: integer (nullable = true) - The taxi in time of the flight</li>
+<li>|-- SCHEDULED_ARRIVAL: integer (nullable = true) - The scheduled arrival time of the flight</li>
+<li>|-- ARRIVAL_TIME: integer (nullable = true) - The actual arrival time of the flight</li>
+<li>|-- ARRIVAL_DELAY: integer (nullable = true) - The arrival delay of the flight</li>
+<li>|-- DIVERTED: integer (nullable = true) - Whether the flight was diverted or not</li>
+<li>|-- CANCELLED: integer (nullable = true) - Whether the flight was cancelled or not</li>
+<li>|-- CANCELLATION_REASON: string (nullable = true) - The reason the flight was cancelled</li>
+<li>|-- AIR_SYSTEM_DELAY: integer (nullable = true) - The air system delay of the flight</li>
+<li>|-- SECURITY_DELAY: integer (nullable = true) - The security delay of the flight</li>
+<li>|-- AIRLINE_DELAY: integer (nullable = true) - The airline delay of the flight</li>
+<li>|-- LATE_AIRCRAFT_DELAY: integer (nullable = true) - The late aircraft delay of the flight </li>
+<li>|-- WEATHER_DELAY: integer (nullable = true) - The weather delay of the flight</li>
+</ul>
 
-     </div>
 </div>
 </div>
 </div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14974,7 +14936,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 2:=============================&gt;                             (3 + 3) / 6]</pre>
+<pre>[Stage 2:=================================================&gt;         (5 + 1) / 6]</pre>
 </div>
 </div>
 
@@ -15013,16 +14975,74 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Preparing the data</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
+
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+
+<span class="c1"># Encode the categorical features using StringIndexer</span>
+<span class="n">indexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">],</span> <span class="n">outputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AIRLINE_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT_INDEX&quot;</span><span class="p">])</span>
+
+<span class="c1"># Create the assembler</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MONTH&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY_OF_WEEK&quot;</span><span class="p">,</span> <span class="s2">&quot;AIRLINE_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_DEPARTURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;DISTANCE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_ARRIVAL&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the maximum number of all categorical features in the dataframe</span>
+<span class="n">max_categories</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="First-Classfier:-Deision-Tree">First Classfier: Deision Tree<a class="anchor-link" href="#First-Classfier:-Deision-Tree">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use a Decision Tree Classifier to predict the delay</span>
 <span class="c1"># Split the data into training and testing sets</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">ParamGridBuilder</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">CrossValidator</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">TrainValidationSplit</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
+
 
 <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 
@@ -15074,7 +15094,7 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
 
 <span class="c1"># Print the accuracy</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy (No Train Validation)&quot;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions_basic</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy (Decision Tree)&quot;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions_basic</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15096,23 +15116,25 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>22/05/10 21:58:09 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 44.7 MiB so far)
-22/05/10 21:58:09 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 44.7 MiB so far)
-22/05/10 21:58:09 WARN BlockManager: Persisting block rdd_63_0 to disk instead.
-22/05/10 21:58:09 WARN BlockManager: Persisting block rdd_63_3 to disk instead.
-22/05/10 21:58:09 WARN MemoryStore: Not enough space to cache rdd_63_1 in memory! (computed 44.7 MiB so far)
-22/05/10 21:58:09 WARN BlockManager: Persisting block rdd_63_1 to disk instead.
-22/05/10 21:58:12 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:12 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 69.4 MiB so far)
-22/05/10 21:58:13 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:13 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:14 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:14 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:15 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:15 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:16 WARN MemoryStore: Not enough space to cache rdd_63_3 in memory! (computed 46.3 MiB so far)
-22/05/10 21:58:17 WARN MemoryStore: Not enough space to cache rdd_63_0 in memory! (computed 46.3 MiB so far)
-[Stage 31:===================&gt;                                      (2 + 4) / 6]</pre>
+<pre>22/05/13 14:13:36 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 44.7 MiB so far)
+22/05/13 14:13:36 WARN BlockManager: Persisting block rdd_73_2 to disk instead.
+22/05/13 14:13:36 WARN MemoryStore: Not enough space to cache rdd_73_4 in memory! (computed 44.7 MiB so far)
+22/05/13 14:13:36 WARN BlockManager: Persisting block rdd_73_4 to disk instead.
+22/05/13 14:13:37 WARN MemoryStore: Not enough space to cache rdd_73_5 in memory! (computed 70.0 MiB so far)
+22/05/13 14:13:37 WARN BlockManager: Persisting block rdd_73_5 to disk instead.
+22/05/13 14:13:37 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 44.7 MiB so far)
+22/05/13 14:13:37 WARN BlockManager: Persisting block rdd_73_1 to disk instead.
+22/05/13 14:13:40 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 46.3 MiB so far)
+22/05/13 14:13:40 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 46.3 MiB so far)
+22/05/13 14:13:41 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
+22/05/13 14:13:41 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
+22/05/13 14:13:42 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
+22/05/13 14:13:43 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
+22/05/13 14:13:44 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
+22/05/13 14:13:44 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
+22/05/13 14:13:46 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
+22/05/13 14:13:46 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 46.3 MiB so far)
+[Stage 37:===================&gt;                                      (2 + 4) / 6]</pre>
 </div>
 </div>
 
@@ -15123,7 +15145,121 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy (No Train Validation) 0.6165246948408494
+<pre>Accuracy (No Train Validation) 0.6134423842584504
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Second-Classifer:-Random-Forest">Second Classifer: Random Forest<a class="anchor-link" href="#Second-Classifer:-Random-Forest">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Random forest classifier</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">numTrees</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_categories</span><span class="p">)</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">rf</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model and print the accuracy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy (Random Forest)&quot;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>22/05/13 14:16:46 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:46 WARN BlockManager: Persisting block rdd_165_1 to disk instead.
+22/05/13 14:16:46 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:46 WARN BlockManager: Persisting block rdd_165_2 to disk instead.
+22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_3 to disk instead.
+22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 64.5 MiB so far)
+22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_4 to disk instead.
+22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_5 in memory! (computed 64.5 MiB so far)
+22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_5 to disk instead.
+22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 18.9 MiB so far)
+22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 100.8 MiB so far)
+22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 64.5 MiB so far)
+22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 64.5 MiB so far)
+22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 64.5 MiB so far)
+22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
+22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 64.5 MiB so far)
+22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
+22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
+22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
+22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 64.5 MiB so far)
+[Stage 67:================================================&gt;         (5 + 1) / 6]</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Accuracy (Random Forest) 0.6158698537274945
 </pre>
 </div>
 </div>

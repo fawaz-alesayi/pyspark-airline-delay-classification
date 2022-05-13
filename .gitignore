@@ -127,5 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Datasets
 2019.csv
 flights.csv
+2021-01-01_performance_mobile_tiles.parquet
