@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>main</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>classification</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14606,10 +14606,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Downloading flights.csv.zip to /workspace/pyspark-airline-delay-classification
- 94%|█████████████████████████████████████▋  | 180M/191M [00:03&lt;00:00, 36.1MB/s]
-100%|████████████████████████████████████████| 191M/191M [00:03&lt;00:00, 50.4MB/s]
+ 90%|████████████████████████████████████▉    | 172M/191M [00:00&lt;00:00, 207MB/s]
+100%|█████████████████████████████████████████| 191M/191M [00:00&lt;00:00, 206MB/s]
 Archive:  flights.csv.zip
-replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
+  inflating: flights.csv             
 </pre>
 </div>
 </div>
@@ -14644,7 +14644,8 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Needed to make Jupyter work with Gitpod</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
 <span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;iframe_connected&#39;</span>
 </pre></div>
 
@@ -14685,7 +14686,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 1:=========&gt;                                                 (1 + 5) / 6]</pre>
+<pre>[Stage 46:================================================&gt;         (5 + 1) / 6]</pre>
 </div>
 </div>
 
@@ -14756,7 +14757,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">when</span><span class="p">,</span> <span class="n">col</span>
 
 <span class="c1"># Add a column &quot;delayed&quot; which is 0 if DEPARTURE_DELAY is 0, 1 if DEPARTURE_DELAY is greater than 0 and -1 if DEPARTURE_DELAY is less than 0</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">when</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DEPARTURE_DELAY&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">when</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;DEPARTURE_DELAY&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
@@ -14936,7 +14937,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 2:=================================================&gt;         (5 + 1) / 6]</pre>
+<pre>[Stage 47:&gt;                                                         (0 + 6) / 6]</pre>
 </div>
 </div>
 
@@ -14988,7 +14989,11 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 <span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MONTH&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY_OF_WEEK&quot;</span><span class="p">,</span> <span class="s2">&quot;AIRLINE_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_DEPARTURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;DISTANCE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_ARRIVAL&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the maximum number of all categorical features in the dataframe</span>
-<span class="n">max_categories</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">num_of_origins</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">num_of_destinations</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">num_of_carriers</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">max_num_of_categorical_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">num_of_origins</span><span class="p">,</span> <span class="n">num_of_destinations</span><span class="p">,</span> <span class="n">num_of_carriers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max categories:&quot;</span><span class="p">,</span> <span class="n">max_num_of_categorical_features</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15002,6 +15007,29 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>[Stage 62:&gt;                                                         (0 + 6) / 6]</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>max categories: 629
+</pre>
+</div>
+</div>
 
 <div class="jp-OutputArea-child">
 
@@ -15046,17 +15074,8 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 
-<span class="c1"># Encode the categorical features using StringIndexer</span>
-<span class="n">indexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">],</span> <span class="n">outputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AIRLINE_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT_INDEX&quot;</span><span class="p">])</span>
-
-<span class="c1"># Create the assembler</span>
-<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MONTH&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY_OF_WEEK&quot;</span><span class="p">,</span> <span class="s2">&quot;AIRLINE_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT_INDEX&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_DEPARTURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;DISTANCE&quot;</span><span class="p">,</span> <span class="s2">&quot;SCHEDULED_ARRIVAL&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the maximum number of all categorical features in the dataframe</span>
-<span class="n">max_categories</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;AIRLINE&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_AIRPORT&quot;</span><span class="p">,</span> <span class="s2">&quot;DESTINATION_AIRPORT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
 <span class="c1"># Create the classifier</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_categories</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_num_of_categorical_features</span><span class="p">)</span>
 
 <span class="c1"># Create the pipeline</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">dt</span><span class="p">])</span>
@@ -15116,25 +15135,25 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>22/05/13 14:13:36 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 44.7 MiB so far)
-22/05/13 14:13:36 WARN BlockManager: Persisting block rdd_73_2 to disk instead.
-22/05/13 14:13:36 WARN MemoryStore: Not enough space to cache rdd_73_4 in memory! (computed 44.7 MiB so far)
-22/05/13 14:13:36 WARN BlockManager: Persisting block rdd_73_4 to disk instead.
-22/05/13 14:13:37 WARN MemoryStore: Not enough space to cache rdd_73_5 in memory! (computed 70.0 MiB so far)
-22/05/13 14:13:37 WARN BlockManager: Persisting block rdd_73_5 to disk instead.
-22/05/13 14:13:37 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 44.7 MiB so far)
-22/05/13 14:13:37 WARN BlockManager: Persisting block rdd_73_1 to disk instead.
-22/05/13 14:13:40 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 46.3 MiB so far)
-22/05/13 14:13:40 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 46.3 MiB so far)
-22/05/13 14:13:41 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
-22/05/13 14:13:41 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
-22/05/13 14:13:42 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
-22/05/13 14:13:43 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
-22/05/13 14:13:44 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
-22/05/13 14:13:44 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 69.4 MiB so far)
-22/05/13 14:13:46 WARN MemoryStore: Not enough space to cache rdd_73_1 in memory! (computed 30.8 MiB so far)
-22/05/13 14:13:46 WARN MemoryStore: Not enough space to cache rdd_73_2 in memory! (computed 46.3 MiB so far)
-[Stage 37:===================&gt;                                      (2 + 4) / 6]</pre>
+<pre>22/05/14 10:19:32 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 44.7 MiB so far)
+22/05/14 10:19:32 WARN BlockManager: Persisting block rdd_193_0 to disk instead.
+22/05/14 10:19:33 WARN MemoryStore: Not enough space to cache rdd_193_1 in memory! (computed 44.7 MiB so far)
+22/05/14 10:19:33 WARN BlockManager: Persisting block rdd_193_1 to disk instead.
+22/05/14 10:19:33 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 44.7 MiB so far)
+22/05/14 10:19:33 WARN BlockManager: Persisting block rdd_193_3 to disk instead.
+22/05/14 10:19:33 WARN MemoryStore: Not enough space to cache rdd_193_5 in memory! (computed 70.0 MiB so far)
+22/05/14 10:19:33 WARN BlockManager: Persisting block rdd_193_5 to disk instead.
+22/05/14 10:19:36 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 46.3 MiB so far)
+22/05/14 10:19:36 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 69.4 MiB so far)
+22/05/14 10:19:37 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 30.8 MiB so far)
+22/05/14 10:19:37 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 69.4 MiB so far)
+22/05/14 10:19:38 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 30.8 MiB so far)
+22/05/14 10:19:38 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 69.4 MiB so far)
+22/05/14 10:19:39 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 30.8 MiB so far)
+22/05/14 10:19:39 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 69.4 MiB so far)
+22/05/14 10:19:40 WARN MemoryStore: Not enough space to cache rdd_193_3 in memory! (computed 30.8 MiB so far)
+22/05/14 10:19:40 WARN MemoryStore: Not enough space to cache rdd_193_0 in memory! (computed 69.4 MiB so far)
+[Stage 88:=========&gt;                                                (1 + 5) / 6]</pre>
 </div>
 </div>
 
@@ -15145,7 +15164,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy (No Train Validation) 0.6134423842584504
+<pre>Accuracy (Decision Tree) 0.6143093574619173
 </pre>
 </div>
 </div>
@@ -15187,7 +15206,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Random forest classifier</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">numTrees</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_categories</span><span class="p">)</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DELAYED&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">numTrees</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_num_of_categorical_features</span><span class="p">)</span>
 
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">rf</span><span class="p">])</span>
 
@@ -15218,37 +15237,39 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>22/05/13 14:16:46 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:46 WARN BlockManager: Persisting block rdd_165_1 to disk instead.
-22/05/13 14:16:46 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:46 WARN BlockManager: Persisting block rdd_165_2 to disk instead.
-22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_3 to disk instead.
-22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 64.5 MiB so far)
-22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_4 to disk instead.
-22/05/13 14:16:47 WARN MemoryStore: Not enough space to cache rdd_165_5 in memory! (computed 64.5 MiB so far)
-22/05/13 14:16:47 WARN BlockManager: Persisting block rdd_165_5 to disk instead.
-22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 18.9 MiB so far)
-22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 100.8 MiB so far)
-22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 64.5 MiB so far)
-22/05/13 14:16:51 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:53 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 64.5 MiB so far)
-22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:55 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 64.5 MiB so far)
-22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
-22/05/13 14:16:59 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 64.5 MiB so far)
-22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_2 in memory! (computed 42.5 MiB so far)
-22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_1 in memory! (computed 42.5 MiB so far)
-22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_3 in memory! (computed 42.5 MiB so far)
-22/05/13 14:17:03 WARN MemoryStore: Not enough space to cache rdd_165_4 in memory! (computed 64.5 MiB so far)
-[Stage 67:================================================&gt;         (5 + 1) / 6]</pre>
+<pre>22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_5 to disk instead.
+22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_4 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_4 to disk instead.
+22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_3 to disk instead.
+22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_0 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_0 to disk instead.
+22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_2 to disk instead.
+22/05/14 10:20:23 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:23 WARN BlockManager: Persisting block rdd_255_1 to disk instead.
+22/05/14 10:20:26 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 8.0 MiB so far)
+22/05/14 10:20:26 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:26 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 18.9 MiB so far)
+22/05/14 10:20:27 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 100.8 MiB so far)
+22/05/14 10:20:28 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:28 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:29 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:29 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:31 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:31 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:31 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:31 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:33 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:33 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:33 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:34 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 64.5 MiB so far)
+22/05/14 10:20:37 WARN MemoryStore: Not enough space to cache rdd_255_3 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:37 WARN MemoryStore: Not enough space to cache rdd_255_2 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:37 WARN MemoryStore: Not enough space to cache rdd_255_5 in memory! (computed 42.5 MiB so far)
+22/05/14 10:20:37 WARN MemoryStore: Not enough space to cache rdd_255_1 in memory! (computed 64.5 MiB so far)
+[Stage 110:======================================&gt;                  (4 + 2) / 6]</pre>
 </div>
 </div>
 
@@ -15259,7 +15280,7 @@ replace flights.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy (Random Forest) 0.6158698537274945
+<pre>Accuracy (Random Forest) 0.6151872637727637
 </pre>
 </div>
 </div>
