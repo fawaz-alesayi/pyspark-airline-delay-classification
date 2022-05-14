@@ -14612,6 +14612,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <li>|-- LATE_AIRCRAFT_DELAY: double (nullable = true) - Late aircraft delay</li>
 <li>|-- Unnamed: 27: string (nullable = true) - Unknown</li>
 </ul>
+<h3 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h3><p>Predict the departure delay of a flight.</p>
 
 </div>
 </div>
@@ -14826,6 +14827,19 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Preprocessing">Preprocessing<a class="anchor-link" href="#Preprocessing">&#182;</a></h1><p>We dropped all the columns that are not needed for the analysis or that would be considered cheating.</p>
+<p>We also added DAY, MONTH, and YEAR columns to the dataset.</p>
+
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14988,6 +15002,21 @@ only showing top 5 rows
 
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Preparing-data-for-training">Preparing data for training<a class="anchor-link" href="#Preparing-data-for-training">&#182;</a></h1><p>We use StringIndexer to convert the categorical variables to numerical values.</p>
+<p>We use OneHotEncoder to convert the numerical values (in ordinal form) to nominal values.</p>
+<p>We use VectorAssembler to convert the numerical variables to a feature vector (required by the model).</p>
+<p>We normalize the feature vector using MinMaxScaler.</p>
+
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
