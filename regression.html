@@ -14572,7 +14572,51 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Regression">Regression<a class="anchor-link" href="#Regression">&#182;</a></h1><p>Data set from Kaggle <a href="https://www.kaggle.com/datasets/sherrytp/airline-delay-analysis">https://www.kaggle.com/datasets/sherrytp/airline-delay-analysis</a></p>
+<h2 id="Description">Description<a class="anchor-link" href="#Description">&#182;</a></h2><h3 id="Context">Context<a class="anchor-link" href="#Context">&#182;</a></h3><p>The U.S. Department of Transportation's (DOT) Bureau of Transportation Statistics tracks the on-time performance of domestic flights operated by large air carriers. I came across this useful data from DOT's database at working and figured this would be a really helpful dataset: Summary information on the number of on-time, delayed, canceled, and diverted flight.</p>
+<h3 id="Content">Content<a class="anchor-link" href="#Content">&#182;</a></h3><p>The datasets contain daily airline information covering from flight information, carrier company, to taxing-in, taxing-out time, and generalized delay reason of exactly 10 years, from 2009 to 2019. The DOT's database is renewed from 2018, so there might be a minor change in the column names.</p>
+<h3 id="Schema">Schema<a class="anchor-link" href="#Schema">&#182;</a></h3><ul>
+<li>|-- FL_DATE: string (nullable = true) - Flight date</li>
+<li>|-- OP_CARRIER: string (nullable = true) - Carrier operating the flight</li>
+<li>|-- OP_CARRIER_FL_NUM: integer (nullable = true) - Flight number</li>
+<li>|-- ORIGIN: string (nullable = true) - Origin airport</li>
+<li>|-- DEST: string (nullable = true) - Destination airport</li>
+<li>|-- CRS_DEP_TIME: integer (nullable = true) - Scheduled departure time</li>
+<li>|-- DEP_TIME: double (nullable = true) - Actual departure time</li>
+<li>|-- DEP_DELAY: double (nullable = true) - Departure delay</li>
+<li>|-- TAXI_OUT: double (nullable = true) - Taxi out time</li>
+<li>|-- WHEELS_OFF: double (nullable = true) - Wheels off time</li>
+<li>|-- WHEELS_ON: double (nullable = true) - Wheels on time</li>
+<li>|-- TAXI_IN: double (nullable = true) - Taxi in time</li>
+<li>|-- CRS_ARR_TIME: integer (nullable = true) - Scheduled arrival time</li>
+<li>|-- ARR_TIME: double (nullable = true) - Actual arrival time</li>
+<li>|-- ARR_DELAY: double (nullable = true) - Arrival delay</li>
+<li>|-- CANCELLED: double (nullable = true) - Cancelled flight</li>
+<li>|-- CANCELLATION_CODE: string (nullable = true) - Cancellation code</li>
+<li>|-- DIVERTED: double (nullable = true) - Diverted flight</li>
+<li>|-- CRS_ELAPSED_TIME: double (nullable = true) - Scheduled elapsed time</li>
+<li>|-- ACTUAL_ELAPSED_TIME: double (nullable = true) - Actual elapsed time</li>
+<li>|-- AIR_TIME: double (nullable = true) - Air time</li>
+<li>|-- DISTANCE: double (nullable = true) - Distance to destination</li>
+<li>|-- CARRIER_DELAY: double (nullable = true) - Carrier delay</li>
+<li>|-- WEATHER_DELAY: double (nullable = true) - Weather delay</li>
+<li>|-- NAS_DELAY: double (nullable = true) - NAS delay</li>
+<li>|-- SECURITY_DELAY: double (nullable = true) - Security delay</li>
+<li>|-- LATE_AIRCRAFT_DELAY: double (nullable = true) - Late aircraft delay</li>
+<li>|-- Unnamed: 27: string (nullable = true) - Unknown</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14605,8 +14649,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Downloading 2018.csv.zip to /workspace/pyspark-airline-delay-classification
- 87%|███████████████████████████████████▋     | 207M/238M [00:00&lt;00:00, 432MB/s]
-100%|█████████████████████████████████████████| 238M/238M [00:00&lt;00:00, 420MB/s]
+ 98%|███████████████████████████████████████ | 233M/238M [00:05&lt;00:00, 46.0MB/s]
+100%|████████████████████████████████████████| 238M/238M [00:05&lt;00:00, 43.4MB/s]
 Archive:  2018.csv.zip
   inflating: 2018.csv                
 </pre>
@@ -14617,7 +14661,7 @@ Archive:  2018.csv.zip
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14633,6 +14677,43 @@ Archive:  2018.csv.zip
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>Picked up JAVA_TOOL_OPTIONS:  -Xmx3435m
+Picked up JAVA_TOOL_OPTIONS:  -Xmx3435m
+22/05/14 15:17:35 WARN Utils: Your hostname, fawazalesay-pysparkairl-mlxxsdnyoem resolves to a loopback address: 127.0.0.1; using 10.0.5.2 instead (on interface ceth0)
+22/05/14 15:17:35 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/jars/spark-unsafe_2.12-3.2.1.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Using Spark&#39;s default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to &#34;WARN&#34;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/05/14 15:17:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+22/05/14 15:17:37 WARN Utils: Service &#39;SparkUI&#39; could not bind on port 4040. Attempting port 4041.
+22/05/14 15:17:37 WARN Utils: Service &#39;SparkUI&#39; could not bind on port 4041. Attempting port 4042.
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14685,7 +14766,7 @@ Archive:  2018.csv.zip
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 7:==================================================&gt;        (6 + 1) / 7]</pre>
+<pre>[Stage 1:==================================================&gt;        (6 + 1) / 7]</pre>
 </div>
 </div>
 
@@ -14738,131 +14819,6 @@ Archive:  2018.csv.zip
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>                                                                                </pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import matplotlib.pyplot as plt</span>
-
-<span class="c1"># df.plot.scatter(x=&#39;FL_DATE&#39;, y=&#39;ARR_DELAY&#39;)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ConnectionRefusedError</span>                    Traceback (most recent call last)
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py:279</span>, in <span class="ansi-cyan-fg">DataFrame.schema</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=277&#39;&gt;278&lt;/a&gt;</span> try:
-<span class="ansi-green-fg">--&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=278&#39;&gt;279&lt;/a&gt;</span>     self._schema = _parse_datatype_json_string(self._jdf.schema().json())
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=279&#39;&gt;280&lt;/a&gt;</span> except Exception as e:
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py:1320</span>, in <span class="ansi-cyan-fg">JavaMember.__call__</span><span class="ansi-blue-fg">(self, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1314&#39;&gt;1315&lt;/a&gt;</span> command = proto.CALL_COMMAND_NAME +\
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1315&#39;&gt;1316&lt;/a&gt;</span>     self.command_header +\
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1316&#39;&gt;1317&lt;/a&gt;</span>     args_command +\
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1317&#39;&gt;1318&lt;/a&gt;</span>     proto.END_COMMAND_PART
-<span class="ansi-green-fg">-&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1319&#39;&gt;1320&lt;/a&gt;</span> answer = self.gateway_client.send_command(command)
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1320&#39;&gt;1321&lt;/a&gt;</span> return_value = get_return_value(
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1321&#39;&gt;1322&lt;/a&gt;</span>     answer, self.gateway_client, self.target_id, self.name)
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py:1036</span>, in <span class="ansi-cyan-fg">GatewayClient.send_command</span><span class="ansi-blue-fg">(self, command, retry, binary)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1015&#39;&gt;1016&lt;/a&gt;</span> &#34;&#34;&#34;Sends a command to the JVM. This method is not intended to be
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1016&#39;&gt;1017&lt;/a&gt;</span>    called directly by Py4J users. It is usually called by
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1017&#39;&gt;1018&lt;/a&gt;</span>    :class:`JavaMember` instances.
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1033&#39;&gt;1034&lt;/a&gt;</span>  if `binary` is `True`.
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1034&#39;&gt;1035&lt;/a&gt;</span> &#34;&#34;&#34;
-<span class="ansi-green-fg">-&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1035&#39;&gt;1036&lt;/a&gt;</span> connection = self._get_connection()
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/java_gateway.py?line=1036&#39;&gt;1037&lt;/a&gt;</span> try:
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py:281</span>, in <span class="ansi-cyan-fg">JavaClient._get_connection</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=279&#39;&gt;280&lt;/a&gt;</span> if connection is None or connection.socket is None:
-<span class="ansi-green-fg">--&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=280&#39;&gt;281&lt;/a&gt;</span>     connection = self._create_new_connection()
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=281&#39;&gt;282&lt;/a&gt;</span> return connection
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py:288</span>, in <span class="ansi-cyan-fg">JavaClient._create_new_connection</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=284&#39;&gt;285&lt;/a&gt;</span> connection = ClientServerConnection(
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=285&#39;&gt;286&lt;/a&gt;</span>     self.java_parameters, self.python_parameters,
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=286&#39;&gt;287&lt;/a&gt;</span>     self.gateway_property, self)
-<span class="ansi-green-fg">--&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=287&#39;&gt;288&lt;/a&gt;</span> connection.connect_to_java_server()
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=288&#39;&gt;289&lt;/a&gt;</span> self.set_thread_connection(connection)
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py:402</span>, in <span class="ansi-cyan-fg">ClientServerConnection.connect_to_java_server</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=399&#39;&gt;400&lt;/a&gt;</span>     self.socket = self.ssl_context.wrap_socket(
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=400&#39;&gt;401&lt;/a&gt;</span>         self.socket, server_hostname=self.java_address)
-<span class="ansi-green-fg">--&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=401&#39;&gt;402&lt;/a&gt;</span> self.socket.connect((self.java_address, self.java_port))
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/py4j/clientserver.py?line=402&#39;&gt;403&lt;/a&gt;</span> self.stream = self.socket.makefile(&#34;rb&#34;)
-
-<span class="ansi-red-fg">ConnectionRefusedError</span>: [Errno 111] Connection refused
-
-The above exception was the direct cause of the following exception:
-
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">/workspace/pyspark-airline-delay-classification/regression.ipynb Cell 5&#39;</span> in <span class="ansi-cyan-fg">&lt;cell line: 3&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell://ssh-remote%2Bfawazalesay-pysparkairl-ck4s7ekwcta/workspace/pyspark-airline-delay-classification/regression.ipynb#ch0000012vscode-remote?line=0&#39;&gt;1&lt;/a&gt;</span> import matplotlib.pyplot as plt
-<span class="ansi-green-fg">----&gt; &lt;a href=&#39;vscode-notebook-cell://ssh-remote%2Bfawazalesay-pysparkairl-ck4s7ekwcta/workspace/pyspark-airline-delay-classification/regression.ipynb#ch0000012vscode-remote?line=2&#39;&gt;3&lt;/a&gt;</span> df.plot.scatter(x=&#39;FL_DATE&#39;, y=&#39;ARR_DELAY&#39;)
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py:1658</span>, in <span class="ansi-cyan-fg">DataFrame.__getattr__</span><span class="ansi-blue-fg">(self, name)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1647&#39;&gt;1648&lt;/a&gt;</span> def __getattr__(self, name):
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1648&#39;&gt;1649&lt;/a&gt;</span>     &#34;&#34;&#34;Returns the :class:`Column` denoted by ``name``.
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1649&#39;&gt;1650&lt;/a&gt;</span> 
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1650&#39;&gt;1651&lt;/a&gt;</span>     .. versionadded:: 1.3.0
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1655&#39;&gt;1656&lt;/a&gt;</span>     [Row(age=2), Row(age=5)]
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1656&#39;&gt;1657&lt;/a&gt;</span>     &#34;&#34;&#34;
-<span class="ansi-green-fg">-&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1657&#39;&gt;1658&lt;/a&gt;</span>     if name not in self.columns:
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1658&#39;&gt;1659&lt;/a&gt;</span>         raise AttributeError(
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1659&#39;&gt;1660&lt;/a&gt;</span>             &#34;&#39;%s&#39; object has no attribute &#39;%s&#39;&#34; % (self.__class__.__name__, name))
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1660&#39;&gt;1661&lt;/a&gt;</span>     jc = self._jdf.apply(name)
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py:1215</span>, in <span class="ansi-cyan-fg">DataFrame.columns</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1203&#39;&gt;1204&lt;/a&gt;</span> @property
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1204&#39;&gt;1205&lt;/a&gt;</span> def columns(self):
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1205&#39;&gt;1206&lt;/a&gt;</span>     &#34;&#34;&#34;Returns all column names as a list.
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1206&#39;&gt;1207&lt;/a&gt;</span> 
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1207&#39;&gt;1208&lt;/a&gt;</span>     .. versionadded:: 1.3.0
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1212&#39;&gt;1213&lt;/a&gt;</span>     [&#39;age&#39;, &#39;name&#39;]
-<span class="ansi-green-intense-fg ansi-bold">   &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1213&#39;&gt;1214&lt;/a&gt;</span>     &#34;&#34;&#34;
-<span class="ansi-green-fg">-&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=1214&#39;&gt;1215&lt;/a&gt;</span>     return [f.name for f in self.schema.fields]
-
-File <span class="ansi-green-fg">~/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py:281</span>, in <span class="ansi-cyan-fg">DataFrame.schema</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=278&#39;&gt;279&lt;/a&gt;</span>         self._schema = _parse_datatype_json_string(self._jdf.schema().json())
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=279&#39;&gt;280&lt;/a&gt;</span>     except Exception as e:
-<span class="ansi-green-fg">--&gt; &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=280&#39;&gt;281&lt;/a&gt;</span>         raise ValueError(
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=281&#39;&gt;282&lt;/a&gt;</span>             &#34;Unable to parse datatype from schema. %s&#34; % e) from e
-<span class="ansi-green-intense-fg ansi-bold">    &lt;a href=&#39;file:///home/gitpod/.pyenv/versions/3.8.13/lib/python3.8/site-packages/pyspark/sql/dataframe.py?line=282&#39;&gt;283&lt;/a&gt;</span> return self._schema
-
-<span class="ansi-red-fg">ValueError</span>: Unable to parse datatype from schema. [Errno 111] Connection refused</pre>
 </div>
 </div>
 
@@ -14957,7 +14913,29 @@ root
  |-- MONTH: integer (nullable = true)
  |-- DAY: integer (nullable = true)
 
-+----------+------+----+------------+---------+------------+----------------+--------+----+-----+---+
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+----------+------+----+------------+---------+------------+----------------+--------+----+-----+---+
 |OP_CARRIER|ORIGIN|DEST|CRS_DEP_TIME|DEP_DELAY|CRS_ARR_TIME|CRS_ELAPSED_TIME|DISTANCE|YEAR|MONTH|DAY|
 +----------+------+----+------------+---------+------------+----------------+--------+----+-----+---+
 |        UA|   EWR| DEN|        1517|     -5.0|        1745|           268.0|  1605.0|2018|    1|  1|
@@ -14979,7 +14957,7 @@ only showing top 5 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 9:==================================================&gt;        (6 + 1) / 7]</pre>
+<pre>[Stage 3:==================================================&gt;        (6 + 1) / 7]</pre>
 </div>
 </div>
 
@@ -15022,6 +15000,7 @@ only showing top 5 rows
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 
 <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 
@@ -15033,6 +15012,9 @@ only showing top 5 rows
 
 <span class="c1"># Create the assembler</span>
 <span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;OP_CARRIER_VEC&quot;</span><span class="p">,</span> <span class="s2">&quot;ORIGIN_VEC&quot;</span><span class="p">,</span> <span class="s2">&quot;DEST_VEC&quot;</span><span class="p">,</span> <span class="s2">&quot;CRS_DEP_TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;CRS_ARR_TIME&quot;</span><span class="p">,</span> <span class="s2">&quot;DAY_VEC&quot;</span><span class="p">,</span> <span class="s2">&quot;MONTH_VEC&quot;</span><span class="p">,</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+
+<span class="c1"># MinMaxScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the maximum number of all categorical features in the dataframe</span>
 <span class="n">num_of_origins</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;ORIGIN&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -15061,7 +15043,7 @@ only showing top 5 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 54:=================================================&gt;        (6 + 1) / 7]</pre>
+<pre>[Stage 30:=================================================&gt;        (6 + 1) / 7]</pre>
 </div>
 </div>
 
@@ -15116,11 +15098,10 @@ only showing top 5 rows
 <span class="kn">from</span> <span class="nn">pyspark.ml.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">RegressionEvaluator</span>
 
-
-<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DEP_DELAY&quot;</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DEP_DELAY&quot;</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># Create the pipeline</span>
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
 
 <span class="c1"># Train the model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
@@ -15153,7 +15134,10 @@ only showing top 5 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Stage 70:=================================================&gt;        (6 + 1) / 7]</pre>
+<pre>22/05/14 15:22:12 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+22/05/14 15:22:12 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.ForeignLinkerBLAS
+22/05/14 15:22:29 WARN InstanceBuilder$NativeLAPACK: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
+[Stage 46:=================================================&gt;        (6 + 1) / 7]</pre>
 </div>
 </div>
 
@@ -15164,7 +15148,7 @@ only showing top 5 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>RMSE: 44.274917223028034
+<pre>RMSE: 44.57553449188212
 </pre>
 </div>
 </div>
@@ -15280,7 +15264,7 @@ only showing top 5 rows
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15291,10 +15275,10 @@ only showing top 5 rows
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Decision Tree Regression Model</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.regression</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 
-<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DEP_DELAY&quot;</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_num_of_categorical_features</span><span class="p">)</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;DEP_DELAY&quot;</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="n">max_num_of_categorical_features</span><span class="p">)</span>
 
 <span class="c1"># Create the pipeline</span>
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">dtr</span><span class="p">])</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">dtr</span><span class="p">])</span>
 
 <span class="c1"># Train the model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
@@ -15310,6 +15294,100 @@ only showing top 5 rows
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>22/05/14 15:30:49 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 70.7 MiB so far)
+22/05/14 15:30:49 WARN BlockManager: Persisting block rdd_221_2 to disk instead.
+22/05/14 15:30:49 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 46.7 MiB so far)
+22/05/14 15:30:49 WARN BlockManager: Persisting block rdd_221_3 to disk instead.
+22/05/14 15:30:49 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 46.7 MiB so far)
+22/05/14 15:30:49 WARN BlockManager: Persisting block rdd_221_4 to disk instead.
+22/05/14 15:30:51 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 109.6 MiB so far)
+22/05/14 15:30:51 WARN BlockManager: Persisting block rdd_221_1 to disk instead.
+22/05/14 15:30:54 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 167.4 MiB so far)
+22/05/14 15:30:54 WARN BlockManager: Persisting block rdd_221_5 to disk instead.
+22/05/14 15:30:54 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 167.4 MiB so far)
+22/05/14 15:30:54 WARN BlockManager: Persisting block rdd_221_0 to disk instead.
+22/05/14 15:32:31 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 71.1 MiB so far)
+22/05/14 15:32:31 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 110.2 MiB so far)
+22/05/14 15:32:31 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 13.6 MiB so far)
+22/05/14 15:32:31 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 252.8 MiB so far)
+22/05/14 15:32:31 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 110.2 MiB so far)
+22/05/14 15:32:32 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 379.3 MiB so far)
+22/05/14 15:32:52 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 251.1 MiB so far)
+22/05/14 15:32:52 WARN BlockManager: Persisting block rdd_221_6 to disk instead.
+22/05/14 15:33:07 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 379.3 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:11 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:20 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 379.3 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:23 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:29 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 379.3 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 46.8 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 46.8 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:32 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 110.2 MiB so far)
+22/05/14 15:33:38 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 379.3 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_0 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_1 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_2 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_4 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_3 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:41 WARN MemoryStore: Not enough space to cache rdd_221_5 in memory! (computed 71.1 MiB so far)
+22/05/14 15:33:46 WARN MemoryStore: Not enough space to cache rdd_221_6 in memory! (computed 379.3 MiB so far)
+[Stage 68:=================================================&gt;        (6 + 1) / 7]</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>RMSE (Decision Tree Regression): 44.77400386137411
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
